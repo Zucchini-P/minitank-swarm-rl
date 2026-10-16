@@ -21,6 +21,11 @@ Each MiniTank is a small, low-cost robot built on an ESP32-S3 microcontroller, a
 
 The design builds on the [MKCOZMO-CONTROLLER](https://github.com/nturmose21/MKCOZMO-CONTROLLER) robot.
 
+<p align="center">
+  <img src="docs/images/fusion360-assembly.png" alt="MiniTank CAD model in Fusion 360" width="700">
+  <br><em>First CAD model of the MiniTank in Fusion 360</em>
+</p>
+
 ## How it works
 
 1. **Simulate** — build a digital model of the robot in the MuJoCo physics simulator
