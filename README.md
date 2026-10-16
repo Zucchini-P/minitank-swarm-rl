@@ -40,4 +40,6 @@ The learning path follows DigiKey and Shawn Hymel's *Reinforcement Learning for 
 
 ## Progress
 
-**October 2026** — Project kicked off. Chose the hardware platform (ESP32-S3, tank chassis) and the simulation pipeline (MuJoCo).
+**October 2026**
+- Project kicked off. Chose the hardware platform (ESP32-S3, tank chassis) and the simulation pipeline (MuJoCo).
+- Built the first robot model in Fusion 360, weighed the real parts, and converted the model into a MuJoCo XML file with real masses and inertia.
