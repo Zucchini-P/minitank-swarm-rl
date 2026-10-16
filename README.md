@@ -50,3 +50,4 @@ The learning path follows DigiKey and Shawn Hymel's *Reinforcement Learning for 
 - Built the first robot model in Fusion 360, weighed the real parts, and converted the model into a MuJoCo XML file with real masses and inertia.
 - Set up the simulation environment (Docker + JupyterLab) and started test-driving the tank model in MuJoCo with left and right motor controls.
 - First working simulation: the tank drives forward, back, left and right from the keyboard in MuJoCo. Next up: tuning the physics so its movement behaves like the real robot.
+- Finished Part 1 of the *Reinforcement Learning for Robotics* series: from CAD model to a drivable robot in MuJoCo.
