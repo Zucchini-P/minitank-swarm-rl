@@ -1,86 +1,43 @@
 # MiniTank Swarm RL
 
-Three small tank-style robots learning to work as a swarm through **reinforcement learning (RL)**, with **implicit coordination**: no robot sends commands to the others. Each one learns its behavior in simulation from its own sensors, and the coordination comes out of training.
+**Three small tank robots learning to work together, with no robot telling the others what to do.**
 
-Each robot runs on an **ESP32-S3** and senses through a **camera**, a **microphone** and a **gyroscope**.
+Each robot learns its behavior through reinforcement learning in a physics simulator, using only its own sensors. The goal is for coordination between the three to emerge from training (implicit coordination) rather than from messages passed between them.
 
----
-
-## Contents
-
-- [Resources](#resources)
-- [Robot hardware](#robot-hardware)
-- [Project log](#project-log)
-- [Open questions](#open-questions)
-- [Next steps](#next-steps)
+**Status:** 🟡 Early stage — planning and learning the simulation pipeline
 
 ---
 
-## Resources
+## The robots
 
-| Resource | What it is |
+Each MiniTank is a small, low-cost robot built on an ESP32-S3 microcontroller, adapted from a Cozmo-style desktop robot into a tank-style chassis.
+
+| | |
 |---|---|
-| *Reinforcement Learning for Robotics* (DigiKey × Shawn Hymel, YouTube) | Six-part series on the sim-to-real pipeline: build the robot in the MuJoCo physics simulator, train it there with RL, then run the trained behavior on the real robot. Part 1 imports a robot CAD model into MuJoCo. |
-| [MKCOZMO-CONTROLLER](https://github.com/nturmose21/MKCOZMO-CONTROLLER) | Cozmo-style ESP32-S3 robot this project builds from |
-| [MK2-Czmo](https://github.com/nturmose21/MK2-Czmo) | Earlier Wi-Fi version of the same robot (ESP32-C3), for reference |
+| **Brain** | ESP32-S3 |
+| **Body** | Tank-style chassis |
+| **Senses** | Camera, microphone, gyroscope |
+| **Swarm size** | 3 robots |
 
----
+The design builds on the [MKCOZMO-CONTROLLER](https://github.com/nturmose21/MKCOZMO-CONTROLLER) robot.
 
-## Robot hardware
+## How it works
 
-### Swarm robot (planned)
+1. **Simulate** — build a digital model of the robot in the MuJoCo physics simulator
+2. **Train** — let the robots learn behaviors through trial and error with reinforcement learning
+3. **Transfer** — load the trained behavior onto the real robots (sim-to-real)
 
-| Part | Decision |
-|---|---|
-| Controller | ESP32-S3 |
-| Chassis | Tank-style (adapted from the Cozmo build) |
-| Sensors | Camera, microphone, gyroscope |
-| Count | 3 robots |
+The learning path follows DigiKey and Shawn Hymel's *Reinforcement Learning for Robotics* video series.
 
-### Starting point: MKCozmo (ESP32-S3)
+## Roadmap
 
-Cozmo-inspired mini robot: two continuous-rotation servos, animated OLED eyes, Bluetooth Xbox controller via Bluepad32.
+- [ ] Robot model running in MuJoCo
+- [ ] Tank chassis designed and built
+- [ ] Sensors (camera, microphone, gyroscope) on board
+- [ ] One robot trained in simulation
+- [ ] Three robots trained together as a swarm
+- [ ] Trained swarm running on real hardware
 
-| Part | Details |
-|---|---|
-| Controller | ESP32-S3 (tested on Seeed XIAO ESP32-S3) |
-| Drive | 2× continuous-rotation servos, 50 Hz PWM, 500–2400 µs, neutral 1500 µs |
-| Display | SSD1306 128×64 OLED, I²C `0x3C`, eyes at ~30 fps |
-| Power | LiPo / USB; 5 V servo rail, 3.3 V logic |
-| Input | Xbox Series controller over Bluetooth (Bluepad32) |
+## Progress
 
-| Signal | ESP32-S3 pin |
-|---|---|
-| Left servo | D6 |
-| Right servo | D7 |
-| OLED SDA | D8 |
-| OLED SCL | D9 |
-
-Libraries: Bluepad32 4.x, ESP32Servo, Adafruit SSD1306, Adafruit GFX. Partition scheme: **Huge APP**.
-
----
-
-## Project log
-
-### 2026-10-15 — Kickoff
-
-- Set the goal: a 3-robot swarm with implicit coordination, trained with RL
-- Chose the DigiKey × Shawn Hymel RL series as the learning path, starting with Part 1 (CAD model → MuJoCo)
-- Documented the existing Cozmo builds as the hardware starting point
-- Decided each robot carries a camera, microphone and gyroscope
-- Chose **ESP32-S3** as the controller for all three robots
-- Decided to adapt the Cozmo build into a **tank-style** chassis
-
----
-
-## Open questions
-
-- Which exact camera/mic and gyroscope modules?
-- The tutorial trains a self-balancing bot; how do its steps carry over to a tank?
-- What task does the swarm learn first, and what reward defines success?
-
-## Next steps
-
-- Work through Part 1: get a robot CAD model into MuJoCo
-- Design the tank chassis
-- Pick sensor modules
+**October 2026** — Project kicked off. Chose the hardware platform (ESP32-S3, tank chassis) and the simulation pipeline (MuJoCo).
